@@ -17,19 +17,12 @@
 <body class="bg-gray-100">
     <header class="bg-gray-800 text-white py-4">
         <div class="container mx-auto flex justify-between items-center px-4">
-            <h1 class="text-2xl font-semibold">Sameer Iyengar</h1>
-            <div class="md:hidden">
-                <button id="nav-toggle" class="text-white focus:outline-none">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
-                    </svg>
-                </button>
-            </div>
-            <nav id="nav-menu" class="hidden md:flex md:space-x-6">
-                <ul class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-6">
+            <h1 class="text-2xl font-semibold">My Photography Portfolio</h1>
+            <nav>
+                <ul class="flex space-x-6">
                     <li><a href="index.html" class="hover:text-gray-400">Home</a></li>
                     <li><a href="/portfolio.html" class="hover:text-gray-400">Portfolio</a></li>
-                    <li><a href="/resume.html" class="hover:text-gray-400">Resume</a></li>
+                    <li><a href="/resume.html" class="hover:text-gray-400">Resume </a></li>
                     <li><a href="https://www.linkedin.com/in/sameer-iyengar/" class="hover:text-gray-400">LinkedIn</a></li>
                     <li><a href="/contact.html" class="hover:text-gray-400">Contact</a></li>
                     <li><a href="/about.html" class="hover:text-gray-400">About</a></li>
@@ -37,7 +30,6 @@
             </nav>
         </div>
     </header>
-
 
     <section id="contact" class="contact py-16 bg-white">
         <div class="container mx-auto px-4 text-center">
@@ -52,15 +44,6 @@
             <p>&copy; Sameer Iyengar 2024</p>
         </div>
     </footer>
-
-    <script>
-        const navToggle = document.getElementById('nav-toggle');
-        const navMenu = document.getElementById('nav-menu');
-
-        navToggle.addEventListener('click', () => {
-            navMenu.classList.toggle('hidden');
-        });
-    </script>
 </body>
 
 </html>

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact</title>
+    <title>My Resume</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
@@ -18,18 +18,11 @@
     <header class="bg-gray-800 text-white py-4">
         <div class="container mx-auto flex justify-between items-center px-4">
             <h1 class="text-2xl font-semibold">Sameer Iyengar</h1>
-            <div class="md:hidden">
-                <button id="nav-toggle" class="text-white focus:outline-none">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
-                    </svg>
-                </button>
-            </div>
-            <nav id="nav-menu" class="hidden md:flex md:space-x-6">
-                <ul class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-6">
+            <nav>
+                <ul class="flex space-x-6">
                     <li><a href="index.html" class="hover:text-gray-400">Home</a></li>
                     <li><a href="/portfolio.html" class="hover:text-gray-400">Portfolio</a></li>
-                    <li><a href="/resume.html" class="hover:text-gray-400">Resume</a></li>
+                    <li><a href="/resume.html" class="hover:text-gray-400">Resume </a></li>
                     <li><a href="https://www.linkedin.com/in/sameer-iyengar/" class="hover:text-gray-400">LinkedIn</a></li>
                     <li><a href="/contact.html" class="hover:text-gray-400">Contact</a></li>
                     <li><a href="/about.html" class="hover:text-gray-400">About</a></li>
@@ -38,12 +31,12 @@
         </div>
     </header>
 
-
-    <section id="contact" class="contact py-16 bg-white">
+    <section id="resume" class="resume py-16 bg-white">
         <div class="container mx-auto px-4 text-center">
-            <h2 class="text-3xl font-bold mb-8">Contact Me</h2>
-            <p class="mb-4">If you'd like to get in touch with me, feel reach out via email at<a href= "mailto: name@email.com"> sameer.m.iyengar@gmail.com </a> or <a href= "mailto: name@email.com"> sameeri2@illinois.edu </a>!</p>
-            
+            <h2 class="text-3xl font-bold mb-8">My Resume</h2>
+            <div class="overflow-auto border-2 border-gray-300 rounded-lg shadow-md" style="height: 80vh;">
+                <iframe src="/resume.pdf" class="w-full h-full"></iframe>
+            </div>
         </div>
     </section>
 
@@ -63,4 +56,5 @@
     </script>
 </body>
 
+</html>
 </html>
