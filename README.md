@@ -1,1 +1,1 @@
-this site is (properly!) hosted at www.siyengar.dev
+this site is (properly!) hosted at siyengar.dev
