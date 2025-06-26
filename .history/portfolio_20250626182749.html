@@ -60,13 +60,13 @@
             padding: 10px 0;
         }
         .desktop-dropdown-menu { 
-        margin-top: 0.5rem; /* Adds gap */
-        pointer-events: auto; /* Crucial - keeps interactive */
-        }
-        .desktop-dropdown:hover .desktop-dropdown-menu {
-        display: block;
-        pointer-events: auto; /* Double protection */
-        }
+  margin-top: 0.5rem; /* Adds gap */
+  pointer-events: auto; /* Crucial - keeps interactive */
+}
+.desktop-dropdown:hover .desktop-dropdown-menu {
+  display: block;
+  pointer-events: auto; /* Double protection */
+}
     </style>
 </head>
 
@@ -90,12 +90,14 @@
                     <li><a href="https://www.linkedin.com/in/sameer-iyengar/" class="hover:text-gray-400">LinkedIn</a></li>
                     
                     <!-- Desktop Fun Things Dropdown -->
-                    <li class="relative group"> <!-- Changed to 'group' -->
-  <button class="flex items-center hover:text-gray-400">
-    fun things
-    <svg class="w-4 h-4 ml-1"><!-- keep your icon --></svg>
-  </button>
-  <div class="group-hover:block hidden bg-gray-700 ... absolute left-0 pt-2">
+                    <li class="relative desktop-dropdown">
+                        <button class="flex items-center hover:text-gray-400 focus:outline-none">
+                            fun things
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </button>
+                        <div class="absolute left-0 z-20 hidden w-48 py-1 mt-2 bg-gray-700 rounded-md shadow-lg desktop-dropdown-menu">
                             <a href="/cat-gallery.html" class="block px-4 py-2 hover:bg-gray-600">Cat Gallery & Bio</a>
                             <a href="/travel-photos.html" class="block px-4 py-2 hover:bg-gray-600">Travel Photos</a>
                             <a href="/hobbies.html" class="block px-4 py-2 hover:bg-gray-600">My Hobbies</a>
