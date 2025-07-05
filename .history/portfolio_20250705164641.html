@@ -9,7 +9,7 @@
     <meta name="description" content="student, innovator, engineer" />
     <meta property="og:title" content="Sameer Iyengar">
     <meta property="og:description" content="student, innovator, engineer">
-    <title>Sameer Iyengar - About</title>
+    <title>Sameer Iyengar - Photography Portfolio</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
@@ -67,6 +67,26 @@
         display: block;
         pointer-events: auto; /* Double protection */
         }
+        /* Blob animation styles */
+            .blob {
+                position: absolute;
+                top: 0;
+                left: 0;
+                fill: #023F92;
+                width: 50vmax;
+                z-index: -1;
+                animation: move 10s ease-in-out infinite;
+                transform-origin: 50% 50%;
+            }
+
+            @keyframes move {
+                0%   { transform: scale(1)   translate(10px, -30px); }
+                38%  { transform: scale(0.8, 1) translate(80vw, 30vh) rotate(160deg); }
+                40%  { transform: scale(0.8, 1) translate(80vw, 30vh) rotate(160deg); }
+                78%  { transform: scale(1.3) translate(0vw, 50vh) rotate(-20deg); }
+                80%  { transform: scale(1.3) translate(0vw, 50vh) rotate(-20deg); }
+                100% { transform: scale(1)   translate(10px, -30px); }
+            }
     </style>
 </head>
 
@@ -109,17 +129,56 @@
             </nav>
         </div>
     </header>
-    <section id="about" class="py-16 bg-white about">
-        <h2 class="mb-8 text-3xl font-bold text-center">about me</h2>
 
-        <div class="container flex flex-col items-center px-4 mx-auto md:flex-row">
-            <img src="/images/profile.jpg" alt="Profile Picture" class="mb-8 rounded-full w-100 h-100 md:mb-0 md:mr-8">
-            <div class="text-left md:text-left md:flex-1">
-                <p class="max-w-2xl mx-auto text-left">I'm a student, entrepreneur, and engineer excited to solve global issues through innovation and collaboration who promotes creativity, collectivism, and innovation through initiative. I have extensive experience with technology, including hardware engineering, electrical engineering, web development, and machine learning. I've led numerous projects and initiatives, some of which to international acclaim. In the future, I hope to continue my efforts to solve issues on a global scale with like-minded individuals! Currently, I'm helping out with research at UIUC's AUVSL (Autonomous and Unmanned Vehicle Systems Laboratory). My research topics include electromechanical design as well as vehicle dynamics simulation. I'm also experienced with both ROS1 and ROS2. In my free time, I enjoy robotics as a hobby, as well as film photography. I often take my own photos, developing and scanning them myself.</p>
+    <section id="portfolio" class="py-16 mt-16 portfolio">
+        <div class="container px-4 mx-auto">
+            <h2 class="mb-8 text-3xl font-bold text-center">photography portfolio</h2>
+            <h3 class="mb-8 font-bold text-center text-1xl">click to loupe!</h3>
+            <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                <!-- Gallery Item 1 -->
+                <div class="gallery-item">
+                    <img src="./images/photo1.jpg" alt="Photo 1" class="object-cover w-full h-64 rounded-lg shadow-md gallery-img" onclick="openModal('./images/photo1.jpg', 'rowhouses, San Francisco, CA')">
+                </div>
+                
+                <!-- Gallery Item 2 -->
+                <div class="gallery-item">
+                    <img src="./images/photo2.jpg" alt="Photo 2" class="object-cover w-full h-64 rounded-lg shadow-md gallery-img" onclick="openModal('./images/photo2.jpg', 'utility box, Point Reyes, CA')">
+                </div>
+                
+                <!-- Gallery Item 3 -->
+                <div class="gallery-item">
+                    <img src="./images/photo3.png" alt="Photo 3" class="object-cover w-full h-64 rounded-lg shadow-md gallery-img" onclick="openModal('./images/photo3.png', 'sea rocks, Point Reyes, CA')">
+                </div>
+                
+                <!-- Gallery Item 4 -->
+                <div class="gallery-item">
+                    <img src="./images/photo4.png" alt="Photo 4" class="object-cover w-full h-64 rounded-lg shadow-md gallery-img" onclick="openModal('./images/photo4.png', 'red-winged blackbird, U of I Arboretum, Urbana, IL')">
+                </div>
+                
+                <!-- Gallery Item 5 -->
+                <div class="gallery-item">
+                    <img src="./images/photo5.png" alt="Photo 5" class="object-cover w-full h-64 rounded-lg shadow-md gallery-img" onclick="openModal('./images/photo5.png', 'architecture, Opera House, Sydney, Australia')">
+                </div>
+                
+                <!-- Gallery Item 6 -->
+                <div class="gallery-item">
+                    <img src="./images/photo6.png" alt="Photo 6" class="object-cover w-full h-64 rounded-lg shadow-md gallery-img" onclick="openModal('./images/photo6.png', 'hanging garden, The Castro, San Francisco, CA')">
+                </div>
+                
+                <!-- Gallery Item 7 -->
+                <div class="gallery-item">
+                    <img src="./images/photo7.png" alt="Photo 7" class="object-cover w-full h-64 rounded-lg shadow-md gallery-img" onclick="openModal('./images/photo7.png', 'MUNI bus, The Castro, San Francisco, CA')">
+                </div>
             </div>
         </div>
     </section>
 
+    <!-- The Modal/Lightbox -->
+    <div id="myModal" class="modal">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="img01">
+        <div id="caption" class="caption"></div>
+    </div>
 
     <footer class="py-4 text-center text-white bg-gray-800">
         <div class="container mx-auto">
@@ -128,13 +187,43 @@
     </footer>
 
     <script>
+        // Mobile navigation toggle
         const navToggle = document.getElementById('nav-toggle');
         const navMenu = document.getElementById('nav-menu');
 
         navToggle.addEventListener('click', () => {
             navMenu.classList.toggle('hidden');
         });
+
+        // Lightbox functionality
+        function openModal(src, alt) {
+            const modal = document.getElementById("myModal");
+            const modalImg = document.getElementById("img01");
+            const captionText = document.getElementById("caption");
+            
+            modal.style.display = "block";
+            modalImg.src = src;
+            captionText.innerHTML = alt;
+            
+            // Close modal when clicking outside the image
+            modal.onclick = function(event) {
+                if (event.target === modal) {
+                    closeModal();
+                }
+            };
+            
+            // Close modal with Escape key
+            document.onkeydown = function(evt) {
+                evt = evt || window.event;
+                if (evt.key === "Escape") {
+                    closeModal();
+                }
+            };
+        }
+
+        function closeModal() {
+            document.getElementById("myModal").style.display = "none";
+        }
     </script>
 </body>
-
 </html>
