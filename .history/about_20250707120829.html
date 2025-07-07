@@ -2,12 +2,6 @@
 <html lang="en">
 
 <head>
-    <script>
-    if (localStorage.theme === 'dark' || 
-        (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-        document.documentElement.classList.add('dark-theme');
-    }
-    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta property="og:image" content="./images/profile.jpg">
@@ -53,12 +47,10 @@
             transition: background 0.5s ease, color 0.3s ease;
             background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="1" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23noise)" opacity="0.05"/></svg>');
             line-height: 1.6;
-            margin: 0;
-            padding: 0;
         }
 
         /* Glassmorphism elements */
-        header, .glass-panel, footer {
+        header, .gallery-item, footer {
             background: var(--glass-light) !important;
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
@@ -94,33 +86,76 @@
             transform: scale(1.1);
         }
 
-        /* About section */
-        #about {
-            padding: 6rem 0;
-            min-height: calc(100vh - 120px);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
+        /* Hero section */
+        #home {
+            background-image: url('images/hero.png');
+            background-size: cover;
+            background-position: center;
         }
 
-        .profile-image {
-            width: 200px;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 50%;
-            border: 3px solid var(--accent-color);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
+        /* Gallery */
+        .gallery-img {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
         }
 
-        .profile-image:hover {
-            transform: scale(1.05);
+        .gallery-img:hover {
+            transform: scale(1.03);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
         }
 
-        .about-content {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 0 2rem;
+        .dark-theme .gallery-img:hover {
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 100;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            overflow: auto;
+        }
+
+        .modal-content {
+            margin: auto;
+            display: block;
+            max-width: 90%;
+            max-height: 90%;
+            margin-top: 5vh;
+            background: var(--glass-light);
+            border-radius: 12px;
+            padding: 20px;
+        }
+
+        .caption {
+            color: var(--text-primary);
+        }
+
+        /* Blob animation */
+        .blob {
+            position: absolute;
+            top: 0;
+            left: 0;
+            fill: var(--accent-color);
+            width: 50vmax;
+            z-index: -1;
+            animation: move 10s ease-in-out infinite;
+            transform-origin: 50% 50%;
+            opacity: 0.15;
+        }
+
+        @keyframes move {
+            0%   { transform: scale(1)   translate(10px, -30px); }
+            38%  { transform: scale(0.8, 1) translate(80vw, 30vh) rotate(160deg); }
+            40%  { transform: scale(0.8, 1) translate(80vw, 30vh) rotate(160deg); }
+            78%  { transform: scale(1.3) translate(0vw, 50vh) rotate(-20deg); }
+            80%  { transform: scale(1.3) translate(0vw, 50vh) rotate(-20deg); }
+            100% { transform: scale(1)   translate(10px, -30px); }
         }
 
         /* Dropdown menu */
@@ -130,39 +165,21 @@
             background: var(--glass-light);
             backdrop-filter: blur(12px);
             border: 1px solid var(--border-light);
-            border-radius: 8px;
-            overflow: hidden;
         }
 
         .desktop-dropdown:hover .desktop-dropdown-menu {
             display: block;
         }
-
-        /* Footer */
-        footer {
-            border-top: 1px solid var(--border-light);
-        }
-
-        @media (max-width: 768px) {
-            #about {
-                padding: 4rem 0;
-            }
-            
-            .profile-image {
-                width: 150px;
-                height: 150px;
-                margin-bottom: 2rem;
-            }
-        }
     </style>
 </head>
 
-<body>
-    <header class="fixed top-0 z-10 w-full py-4">
+<body class="bg-gray-100">
+<body class="bg-gray-100">
+<header class="fixed top-0 z-10 w-full py-4 text-white bg-gray-800">
         <div class="container flex items-center justify-between px-4 mx-auto">
             <h1 class="text-2xl font-semibold">Sameer Iyengar</h1>
             <div class="md:hidden">
-                <button id="nav-toggle" class="focus:outline-none">
+                <button id="nav-toggle" class="text-white focus:outline-none">
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
                     </svg>
@@ -188,7 +205,7 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                             </svg>
                         </button>
-                        <div class="absolute left-0 hidden pt-2 group-hover:block desktop-dropdown-menu">
+                        <div class="absolute left-0 hidden pt-2 rounded-lg group-hover:block desktop-dropdown-menu">
                             <a href="/cat-gallery.html" class="block px-4 py-2 hover:text-accent-color">eva!!</a>
                         </div>
                     </li>
@@ -198,69 +215,32 @@
             </nav>
         </div>
     </header>
+    <section id="about" class="py-16 bg-white about">
+        <h2 class="mb-8 text-3xl font-bold text-center">about me</h2>
 
-    <main>
-        <section id="about" class="about">
-            <div class="container flex flex-col items-center px-4 mx-auto md:flex-row">
-                <div class="flex justify-center w-full mb-8 md:w-auto md:mb-0 md:mr-12">
-                    <img src="/images/profile.jpg" alt="Profile Picture" class="profile-image">
-                </div>
-                <div class="about-content">
-                    <h2 class="mb-6 text-4xl font-bold text-center md:text-left">About Me</h2>
-                    <div class="space-y-4 text-lg">
-                        <p>I'm a student, entrepreneur, and engineer excited to solve global issues through innovation and collaboration who promotes creativity, collectivism, and innovation through initiative.</p>
-                        <p>I have extensive experience with technology, including hardware engineering, electrical engineering, web development, and machine learning. I've led numerous projects and initiatives, some of which to international acclaim.</p>
-                        <p>In the future, I hope to continue my efforts to solve issues on a global scale with like-minded individuals! Currently, I'm helping out with research at UIUC's AUVSL (Autonomous and Unmanned Vehicle Systems Laboratory). My research topics include electromechanical design as well as vehicle dynamics simulation.</p>
-                        <p>I'm also experienced with both ROS1 and ROS2. In my free time, I enjoy robotics as a hobby, as well as film photography. I often take my own photos, developing and scanning them myself.</p>
-                    </div>
-                </div>
+        <div class="container flex flex-col items-center px-4 mx-auto md:flex-row">
+            <img src="/images/profile.jpg" alt="Profile Picture" class="mb-8 rounded-full w-100 h-100 md:mb-0 md:mr-8">
+            <div class="text-left md:text-left md:flex-1">
+                <p class="max-w-2xl mx-auto text-left">I'm a student, entrepreneur, and engineer excited to solve global issues through innovation and collaboration who promotes creativity, collectivism, and innovation through initiative. I have extensive experience with technology, including hardware engineering, electrical engineering, web development, and machine learning. I've led numerous projects and initiatives, some of which to international acclaim. In the future, I hope to continue my efforts to solve issues on a global scale with like-minded individuals! Currently, I'm helping out with research at UIUC's AUVSL (Autonomous and Unmanned Vehicle Systems Laboratory). My research topics include electromechanical design as well as vehicle dynamics simulation. I'm also experienced with both ROS1 and ROS2. In my free time, I enjoy robotics as a hobby, as well as film photography. I often take my own photos, developing and scanning them myself.</p>
             </div>
-        </section>
-    </main>
+        </div>
+    </section>
 
-    <footer class="py-4 text-center">
+
+    <footer class="py-4 text-center text-white bg-gray-800">
         <div class="container mx-auto">
             <p>&copy; Sameer Iyengar 2025</p>
         </div>
     </footer>
 
     <script>
-        // Mobile navigation toggle
         const navToggle = document.getElementById('nav-toggle');
         const navMenu = document.getElementById('nav-menu');
 
         navToggle.addEventListener('click', () => {
             navMenu.classList.toggle('hidden');
         });
-
-        // Theme toggle functionality
-        const themeToggle = document.getElementById('theme-toggle');
-        const darkIcon = document.querySelector('.dark-icon');
-        const lightIcon = document.querySelector('.light-icon');
-
-        // Check for saved preference or system preference
-        const savedTheme = localStorage.getItem('theme') || 
-                         (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-
-        if (savedTheme === 'dark') document.documentElement.classList.add('dark-theme');
-
-        // Update UI icons
-        function updateIcons() {
-            const isDark = document.documentElement.classList.contains('dark-theme');
-            darkIcon.classList.toggle('hidden', !isDark);
-            lightIcon.classList.toggle('hidden', isDark);
-        }
-
-        // Toggle theme
-        themeToggle.addEventListener('click', () => {
-            document.documentElement.classList.toggle('dark-theme');
-            const theme = document.documentElement.classList.contains('dark-theme') ? 'dark' : 'light';
-            localStorage.setItem('theme', theme);
-            updateIcons();
-        });
-
-        // Initialize icons
-        updateIcons();
     </script>
 </body>
+
 </html>
