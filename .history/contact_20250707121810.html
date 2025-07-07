@@ -15,7 +15,7 @@
     <meta name="description" content="student, innovator, engineer" />
     <meta property="og:title" content="Sameer Iyengar">
     <meta property="og:description" content="student, innovator, engineer">
-    <title>Sameer Iyengar - About</title>
+    <title>Sameer Iyengar</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
@@ -55,20 +55,29 @@
             line-height: 1.6;
             margin: 0;
             padding: 0;
+            overflow-x: hidden; /* Prevent horizontal scroll */
         }
 
-        /* Glassmorphism Navigation Bar */
-        header {
-            position: fixed;
-            top: 0;
+        /* Container for hero section with blob */
+        .hero-container {
+            position: relative;
             width: 100%;
+            height: 100vh;
+            overflow: hidden; /* This keeps the blob contained */
+        }
+
+        /* Glassmorphism elements */
+        header, .gallery-item, footer, nav {
             background: var(--glass-light) !important;
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--border-light);
+            border-color: var(--border-light) !important;
             color: var(--glass-text) !important;
-            z-index: 100;
-            padding: 1rem 0;
+        }
+
+        /* Header specific */
+        header {
+            border-bottom: 1px solid var(--border-light);
         }
 
         /* Navigation */
@@ -94,86 +103,49 @@
             transform: scale(1.1);
         }
 
-        /* About section */
-        #about {
-            padding: 8rem 0 4rem; /* Adjusted for fixed header */
-            min-height: calc(100vh - 120px);
+        /* Hero section */
+        #home {
+            position: relative;
             display: flex;
-            flex-direction: column;
+            align-items: center;
             justify-content: center;
+            height: 100%;
+            width: 100%;
+            background-image: url('images/hero.png');
+            background-size: cover;
+            background-position: center;
         }
 
-        .profile-image {
-            width: 200px;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 50%;
-            border: 3px solid var(--accent-color);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
+        /* Blob animation - now constrained by hero-container */
+        .blob {
+            position: absolute;
+            fill: var(--accent-color);
+            width: 50vmax;
+            z-index: 0;
+            animation: move 15s ease-in-out infinite;
+            transform-origin: 50% 50%;
+            opacity: 0.15;
+            /* Constrain initial position */
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
         }
 
-        .profile-image:hover {
-            transform: scale(1.05);
+        @keyframes move {
+            0%   { transform: translate(-50%, -50%) scale(1) rotate(0deg); }
+            25%  { transform: translate(30%, 20%) scale(0.8) rotate(90deg); }
+            50%  { transform: translate(-10%, 40%) scale(1.2) rotate(180deg); }
+            75%  { transform: translate(-30%, 10%) scale(0.9) rotate(270deg); }
+            100% { transform: translate(-50%, -50%) scale(1) rotate(360deg); }
         }
 
-        .about-content {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        /* Dropdown menu */
-        .desktop-dropdown-menu { 
-            margin-top: 0.5rem;
-            background: var(--glass-light);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid var(--border-light);
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-        }
-
-        .desktop-dropdown:hover .desktop-dropdown-menu {
-            display: block;
-        }
-
-        /* Footer */
-        footer {
-            background: var(--glass-light);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-top: 1px solid var(--border-light);
-            padding: 1rem 0;
-        }
-
-        @media (max-width: 768px) {
-            #about {
-                padding: 6rem 0 2rem;
-            }
-            
-            .profile-image {
-                width: 150px;
-                height: 150px;
-                margin-bottom: 2rem;
-            }
-            
-            #nav-menu {
-                background: var(--glass-light);
-                backdrop-filter: blur(12px);
-                -webkit-backdrop-filter: blur(12px);
-                border: 1px solid var(--border-light);
-                border-radius: 8px;
-                padding: 1rem;
-                margin-top: 0.5rem;
-            }
-        }
+        /* Rest of your existing styles... */
+        /* ... (keep all your other existing styles) ... */
     </style>
 </head>
 
 <body>
-    <header class="fixed top-0 z-10 w-full">
+    <header class="fixed top-0 z-10 w-full py-4">
         <div class="container flex items-center justify-between px-4 mx-auto">
             <h1 class="text-2xl font-semibold">Sameer Iyengar</h1>
             <div class="md:hidden">
@@ -203,7 +175,7 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                             </svg>
                         </button>
-                        <div class="absolute left-0 hidden pt-2 group-hover:block desktop-dropdown-menu">
+                        <div class="absolute left-0 hidden pt-2 rounded-lg group-hover:block desktop-dropdown-menu">
                             <a href="/cat-gallery.html" class="block px-4 py-2 hover:text-accent-color">eva!!</a>
                         </div>
                     </li>
@@ -214,26 +186,19 @@
         </div>
     </header>
 
-    <main>
-        <section id="about" class="about">
-            <div class="container flex flex-col items-center px-4 mx-auto md:flex-row">
-                <div class="flex justify-center w-full mb-8 md:w-auto md:mb-0 md:mr-12">
-                    <img src="/images/profile.jpg" alt="Profile Picture" class="profile-image">
-                </div>
-                <div class="about-content">
-                    <h2 class="mb-6 text-4xl font-bold text-center md:text-left">About Me</h2>
-                    <div class="space-y-4 text-lg">
-                        <p>I'm a student, entrepreneur, and engineer excited to solve global issues through innovation and collaboration who promotes creativity, collectivism, and innovation through initiative.</p>
-                        <p>I have extensive experience with technology, including hardware engineering, electrical engineering, web development, and machine learning. I've led numerous projects and initiatives, some of which to international acclaim.</p>
-                        <p>In the future, I hope to continue my efforts to solve issues on a global scale with like-minded individuals! Currently, I'm helping out with research at UIUC's AUVSL (Autonomous and Unmanned Vehicle Systems Laboratory). My research topics include electromechanical design as well as vehicle dynamics simulation.</p>
-                        <p>I'm also experienced with both ROS1 and ROS2. In my free time, I enjoy robotics as a hobby, as well as film photography. I often take my own photos, developing and scanning them myself.</p>
-                    </div>
-                </div>
+    <div class="hero-container">
+        <section id="home">
+            <div class="py-4 text-center rounded-full glass" style="position: relative; z-index: 1;">
+                <h2 class="px-16 mb-4 text-4xl font-bold">welcome to my website!</h2>
+                <p class="text-lg">life through my lens</p>
             </div>
+            <svg class="blob" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                <path d="M45.6,-50.1C58.4,-38.5,67.3,-22.9,68.1,-6.6C68.9,9.7,61.6,26.7,49.1,39.3C36.6,51.9,18.8,60.1,0.9,59.2C-17,58.3,-34,48.3,-45.5,35.1C-57.1,21.9,-63.2,5.5,-60.9,-9.8C-58.6,-25.1,-47.9,-39.3,-34.2,-50.6C-20.5,-61.9,-3.8,-70.3,11.2,-67.8C26.2,-65.3,52.4,-51.8,45.6,-50.1Z" transform="translate(100 100)" />
+            </svg>
         </section>
-    </main>
+    </div>
 
-    <footer class="text-center">
+    <footer class="py-4 text-center">
         <div class="container mx-auto">
             <p>&copy; Sameer Iyengar 2025</p>
         </div>

@@ -57,18 +57,18 @@
             padding: 0;
         }
 
-        /* Glassmorphism Navigation Bar */
-        header {
-            position: fixed;
-            top: 0;
-            width: 100%;
+        /* Glassmorphism elements */
+        header, .glass-panel, footer, nav {
             background: var(--glass-light) !important;
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--border-light);
+            border-color: var(--border-light) !important;
             color: var(--glass-text) !important;
-            z-index: 100;
-            padding: 1rem 0;
+        }
+
+        /* Header specific */
+        header {
+            border-bottom: 1px solid var(--border-light);
         }
 
         /* Navigation */
@@ -86,7 +86,7 @@
         #theme-toggle {
             background: var(--glass-light);
             backdrop-filter: blur(10px);
-            border: 1px solid var(--border-light);
+            /* border: 1px solid var(--border-light); */
             transition: all 0.3s ease;
         }
 
@@ -96,7 +96,7 @@
 
         /* About section */
         #about {
-            padding: 8rem 0 4rem; /* Adjusted for fixed header */
+            padding: 6rem 0;
             min-height: calc(100vh - 120px);
             display: flex;
             flex-direction: column;
@@ -126,13 +126,12 @@
         /* Dropdown menu */
         .desktop-dropdown-menu { 
             margin-top: 0.5rem;
+            pointer-events: auto;
             background: var(--glass-light);
             backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
             border: 1px solid var(--border-light);
             border-radius: 8px;
             overflow: hidden;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
         }
 
         .desktop-dropdown:hover .desktop-dropdown-menu {
@@ -141,16 +140,12 @@
 
         /* Footer */
         footer {
-            background: var(--glass-light);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
             border-top: 1px solid var(--border-light);
-            padding: 1rem 0;
         }
 
         @media (max-width: 768px) {
             #about {
-                padding: 6rem 0 2rem;
+                padding: 4rem 0;
             }
             
             .profile-image {
@@ -158,22 +153,12 @@
                 height: 150px;
                 margin-bottom: 2rem;
             }
-            
-            #nav-menu {
-                background: var(--glass-light);
-                backdrop-filter: blur(12px);
-                -webkit-backdrop-filter: blur(12px);
-                border: 1px solid var(--border-light);
-                border-radius: 8px;
-                padding: 1rem;
-                margin-top: 0.5rem;
-            }
         }
     </style>
 </head>
 
 <body>
-    <header class="fixed top-0 z-10 w-full">
+    <header class="fixed top-0 z-10 w-full py-4">
         <div class="container flex items-center justify-between px-4 mx-auto">
             <h1 class="text-2xl font-semibold">Sameer Iyengar</h1>
             <div class="md:hidden">
@@ -184,7 +169,7 @@
                 </button>
             </div>
             <nav id="nav-menu" class="hidden md:flex md:space-x-6">
-                <ul class="flex flex-col space-y-4 md:flex-row md:space-y-0 md:space-x-6">
+                <ul class="flex flex-col space-y-4 md:flex-row md:space-y-0 md:space-x-6 .glass-panel">
                     <li><a href="/index.html">home</a></li>
                     <li><a href="/portfolio.html">portfolio</a></li>
                     <li><a href="resume.html">resume</a></li>
@@ -233,7 +218,7 @@
         </section>
     </main>
 
-    <footer class="text-center">
+    <footer class="py-4 text-center">
         <div class="container mx-auto">
             <p>&copy; Sameer Iyengar 2025</p>
         </div>
