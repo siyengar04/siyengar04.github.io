@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <script>
     if (localStorage.theme === 'dark' || 
@@ -15,8 +16,8 @@
     <meta property="og:title" content="Sameer Iyengar">
     <meta property="og:description" content="student, innovator, engineer">
     <title>Sameer Iyengar - Eva!!</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         :root {
             /* Light Theme (default) */
@@ -40,7 +41,7 @@
             --bg-primary: var(--bg-primary-dark);
             --text-primary: var(--text-primary-dark);
             --glass-light: var(--glass-dark);
-            --glass-text: var(--glass-text-dark);
+            --glass-text: var(--glass-text-dark); /* Swapped text color */
             --border-light: var(--border-dark);
             --accent-color: var(--accent-color-dark);
         }
@@ -65,14 +66,14 @@
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             border-bottom: 1px solid var(--border-light);
-            color: var(--glass-text) !important;
+            color: var(--glass-text) !important; /* Uses glass-text color */
             z-index: 100;
             padding: 1rem 0;
         }
 
         /* Navigation */
         nav a {
-            color: var(--glass-text);
+            color: var(--glass-text); /* Uses glass-text color */
             transition: all 0.3s ease;
         }
 
@@ -86,55 +87,88 @@
             background: var(--glass-light);
             backdrop-filter: blur(10px);
             border: 1px solid var(--border-light);
-            color: var(--glass-text);
+            color: var(--glass-text); /* Uses glass-text color */
             transition: all 0.3s ease;
         }
 
-        #theme-toggle:hover {
-            transform: scale(1.1);
+        /* Cat Gallery Section */
+        #cat-gallery {
+            padding: 8rem 0 4rem;
         }
 
-        /* Glass panel styles */
-        .glass-panel {
+        .gallery-img {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            border-radius: 12px;
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+        }
+
+        .gallery-item {
             background: var(--glass-light);
             backdrop-filter: blur(8px);
             -webkit-backdrop-filter: blur(8px);
             border: 1px solid var(--border-light);
             border-radius: 12px;
-            color: var(--glass-text);
+            overflow: hidden;
             transition: all 0.3s ease;
         }
 
-        /* Main content */
-        main {
-            padding-top: 6rem;
-            padding-bottom: 4rem;
-        }
-
-        /* Cat profile section */
-        .cat-profile {
-            background: var(--glass-light);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            border-radius: 12px;
-            padding: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        /* Routine cards */
-        .routine-card {
-            background: var(--glass-light);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            border: 1px solid var(--border-light);
-            border-radius: 12px;
-            padding: 1.5rem;
-            transition: all 0.3s ease;
-        }
-
-        .routine-card:hover {
+        .gallery-item:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Headings in glass containers */
+        .glass-heading {
+            color: var(--glass-text) !important; /* Ensures proper contrast */
+            background: var(--glass-light);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border-radius: 12px;
+            padding: 1rem 2rem;
+            display: inline-block;
+            margin-bottom: 2rem;
+            border: 1px solid var(--border-light);
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            overflow: auto;
+        }
+
+        .modal-content {
+            margin: auto;
+            display: block;
+            max-width: 90%;
+            max-height: 80vh;
+            margin-top: 10vh;
+            background: var(--glass-light);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid var(--border-light);
+        }
+
+        .caption {
+            color: var(--glass-text) !important; /* Ensures proper contrast */
+            background: var(--glass-light);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 8px;
+            padding: 0.5rem 1rem;
+            margin-top: 1rem;
+            display: inline-block;
         }
 
         /* Footer */
@@ -143,14 +177,25 @@
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             border-top: 1px solid var(--border-light);
-            color: var(--glass-text);
             padding: 1rem 0;
+            color: var(--glass-text) !important; /* Uses glass-text color */
         }
 
-        /* Responsive adjustments */
+        /* Grid Layout */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
         @media (max-width: 768px) {
-            main {
-                padding-top: 5rem;
+            #cat-gallery {
+                padding: 6rem 0 2rem;
+            }
+            
+            .glass-heading {
+                padding: 0.75rem 1.5rem;
+                font-size: 1.5rem;
             }
         }
     </style>
@@ -169,7 +214,7 @@
             </div>
             <nav id="nav-menu" class="hidden md:flex md:space-x-6">
                 <ul class="flex flex-col space-y-4 md:flex-row md:space-y-0 md:space-x-6">
-                    <li><a href="index.html">home</a></li>
+                    <li><a href="/index.html">home</a></li>
                     <li><a href="/portfolio.html">portfolio</a></li>
                     <li><a href="/resume.html">resume</a></li>
                     <li><a href="https://www.linkedin.com/in/sameer-iyengar/">LinkedIn</a></li>
@@ -187,7 +232,7 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                             </svg>
                         </button>
-                        <div class="absolute left-0 hidden pt-2 group-hover:block glass-panel">
+                        <div class="absolute left-0 hidden pt-2 group-hover:block desktop-dropdown-menu">
                             <a href="/cat-gallery.html" class="block px-4 py-2 hover:text-accent-color">eva!!</a>
                         </div>
                     </li>
@@ -198,43 +243,58 @@
         </div>
     </header>
 
-    <main class="max-w-6xl px-4 pb-12 mx-auto">
-        <section class="mb-12 glass-panel">
-            <h1 class="mb-6 text-4xl font-bold text-center">eva!!</h1>
-            <div class="flex flex-col items-center gap-8 md:flex-row">
-                <div class="md:w-1/3">
-                    <img src="/images/cat-profile.jpg" alt="My cat" class="w-full rounded-lg shadow-xl">
+    <main>
+        <section id="cat-gallery" class="cat-gallery">
+            <div class="container px-4 mx-auto text-center">
+                <div class="glass-heading">
+                    <h2 class="mb-2 text-3xl font-bold">Eva!!</h2>
+                    <p class="text-lg">My Adorable Cat</p>
                 </div>
-                <div class="md:w-2/3">
-                    <h2 class="mb-4 text-2xl font-semibold">bio</h2>
-                    <p class="mb-4 text-lg">Meet Eva! She's a tabby/tortoise mix who joined our family in August 2023. She loves anything that crinkles, and her favorite food is anything we tell her not to eat.</p>
-                    <p class="mb-4 text-lg">Eva is rather silly. She often gets the zoomies around 3am, and often knocks things off tables. She's also a big fan of treats.</p>
-                </div>
-            </div>
-        </section>
-
-        <section class="p-6 mt-12 glass-panel">
-            <h2 class="mb-4 text-2xl font-bold">daily routine</h2>
-            <div class="grid gap-4 md:grid-cols-3">
-                <div class="routine-card">
-                    <h3 class="mb-2 font-semibold">morning</h3>
-                    <p>scratch at bedroom door for 20 minutes</p>
-                </div>
-                <div class="routine-card">
-                    <h3 class="mb-2 font-semibold">Afternoon</h3>
-                    <p>nap</p>
-                </div>
-                <div class="routine-card">
-                    <h3 class="mb-2 font-semibold">Evening</h3>
-                    <p>nap again</p>
+                <div class="grid">
+                    <!-- Cat Photo 1 -->
+                    <div class="gallery-item">
+                        <img loading="lazy" src="./images/cat1.jpg" alt="Eva the cat" class="gallery-img" onclick="openModal('./images/cat1.jpg', 'Eva looking curious')">
+                    </div>
+                    
+                    <!-- Cat Photo 2 -->
+                    <div class="gallery-item">
+                        <img loading="lazy" src="./images/cat2.jpg" alt="Eva the cat" class="gallery-img" onclick="openModal('./images/cat2.jpg', 'Eva sleeping peacefully')">
+                    </div>
+                    
+                    <!-- Cat Photo 3 -->
+                    <div class="gallery-item">
+                        <img loading="lazy" src="./images/cat3.jpg" alt="Eva the cat" class="gallery-img" onclick="openModal('./images/cat3.jpg', 'Eva playing with toy')">
+                    </div>
+                    
+                    <!-- Cat Photo 4 -->
+                    <div class="gallery-item">
+                        <img loading="lazy" src="./images/cat4.jpg" alt="Eva the cat" class="gallery-img" onclick="openModal('./images/cat4.jpg', 'Eva in a box')">
+                    </div>
+                    
+                    <!-- Cat Photo 5 -->
+                    <div class="gallery-item">
+                        <img loading="lazy" src="./images/cat5.jpg" alt="Eva the cat" class="gallery-img" onclick="openModal('./images/cat5.jpg', 'Eva stretching')">
+                    </div>
+                    
+                    <!-- Cat Photo 6 -->
+                    <div class="gallery-item">
+                        <img loading="lazy" src="./images/cat6.jpg" alt="Eva the cat" class="gallery-img" onclick="openModal('./images/cat6.jpg', 'Eva being silly')">
+                    </div>
                 </div>
             </div>
         </section>
     </main>
 
+    <!-- The Modal/Lightbox -->
+    <div id="myModal" class="modal">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <img loading="lazy" class="modal-content" id="img01">
+        <div id="caption" class="caption"></div>
+    </div>
+
     <footer class="text-center">
         <div class="container mx-auto">
-            <p>&copy; Sameer Iyengar 2024</p>
+            <p>&copy; Sameer Iyengar 2025</p>
         </div>
     </footer>
 
@@ -275,6 +335,36 @@
 
         // Initialize icons
         updateIcons();
+
+        // Lightbox functionality
+        function openModal(src, alt) {
+            const modal = document.getElementById("myModal");
+            const modalImg = document.getElementById("img01");
+            const captionText = document.getElementById("caption");
+            
+            modal.style.display = "block";
+            modalImg.src = src;
+            captionText.innerHTML = alt;
+            
+            // Close modal when clicking outside the image
+            modal.onclick = function(event) {
+                if (event.target === modal) {
+                    closeModal();
+                }
+            };
+            
+            // Close modal with Escape key
+            document.onkeydown = function(evt) {
+                evt = evt || window.event;
+                if (evt.key === "Escape") {
+                    closeModal();
+                }
+            };
+        }
+
+        function closeModal() {
+            document.getElementById("myModal").style.display = "none";
+        }
     </script>
 </body>
 </html>
