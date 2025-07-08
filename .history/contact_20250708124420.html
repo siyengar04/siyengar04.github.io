@@ -15,7 +15,7 @@
     <meta name="description" content="student, innovator, engineer" />
     <meta property="og:title" content="Sameer Iyengar">
     <meta property="og:description" content="student, innovator, engineer">
-    <title>Sameer Iyengar - Resume</title>
+    <title>Sameer Iyengar - Contact</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
@@ -94,26 +94,33 @@
             transform: scale(1.1);
         }
 
-        /* Resume Section */
-        #resume {
+        /* Contact Section */
+        #contact {
             padding: 8rem 0 4rem; /* Adjusted for fixed header */
         }
 
-        .resume-container {
+        .contact-container {
             background: var(--glass-light);
             backdrop-filter: blur(8px);
             -webkit-backdrop-filter: blur(8px);
             border: 1px solid var(--border-light);
             border-radius: 12px;
-            overflow: hidden;
+            padding: 2rem;
+            max-width: 600px;
+            margin: 0 auto;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-            height: 80vh;
         }
 
-        .resume-iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
+        .email-link {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .email-link:hover {
+            text-decoration: underline;
+            transform: translateY(-2px);
         }
 
         /* Dropdown menu */
@@ -143,12 +150,13 @@
         }
 
         @media (max-width: 768px) {
-            #resume {
+            #contact {
                 padding: 6rem 0 2rem;
             }
             
-            .resume-container {
-                height: 70vh;
+            .contact-container {
+                margin: 0 1rem;
+                padding: 1.5rem;
             }
             
             #nav-menu {
@@ -207,11 +215,17 @@
     </header>
 
     <main>
-        <section id="resume" class="resume">
-            <div class="container px-4 mx-auto">
-                <h2 class="mb-8 text-3xl font-bold text-center">my resume</h2>
-                <div class="resume-container">
-                    <iframe src="/resume.pdf" class="resume-iframe"></iframe>
+        <section id="contact" class="contact">
+            <div class="contact-container">
+                <h2 class="mb-6 text-3xl font-bold text-center">Contact Me</h2>
+                <p class="mb-6 text-lg">If you'd like to get in touch with me, feel free to reach out via email:</p>
+                <div class="space-y-4">
+                    <p>
+                        sameer.m.iyengar@gmail.com</a>
+                    </p>
+                    <p>
+                        <a href="mailto:sameeri2@illinois.edu" class="email-link">sameeri2@illinois.edu</a>
+                    </p>
                 </div>
             </div>
         </section>
