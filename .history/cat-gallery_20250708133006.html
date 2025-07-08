@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:image" content="./images/profile.jpg">
+    <meta property="og:image:type" content="image/jpg">
+    <meta name="description" content="student, innovator, engineer" />
+    <meta property="og:title" content="Sameer Iyengar">
+    <meta property="og:description" content="student, innovator, engineer">
+    <title>Sameer Iyengar - Eva!!</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+        background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="1" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23noise)" opacity="0.05"/></svg>');
+        }
+        .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        grid-auto-rows: 10px; /* Control row height */
+        }
+        .gallery-item {
+        grid-row-end: span 30; /* Adjust per image aspect ratio */
+        }
+        .gallery-img {
+        transition: all 0.4s cubic-bezier(0.2, 0, 0.1, 1);
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+        .gallery-img {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+        .gallery-img:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 100;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            overflow: auto;
+        }
+        .modal-content {
+            margin: auto;
+            display: block;
+            max-width: 90%;
+            max-height: 90%;
+            margin-top: 5vh;
+        }
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .caption {
+            margin: auto;
+            display: block;
+            width: 80%;
+            text-align: center;
+            color: #ccc;
+            padding: 10px 0;
+        }
+        .desktop-dropdown-menu { 
+        margin-top: 0.5rem; /* Adds gap */
+        pointer-events: auto; /* Crucial - keeps interactive */
+        }
+        .desktop-dropdown:hover .desktop-dropdown-menu {
+        display: block;
+        pointer-events: auto; /* Double protection */
+        }
+        /* Blob animation styles */
+        .blob {
+            position: absolute;
+            top: 0;
+            left: 0;
+            fill: #023F92;
+            width: 50vmax;
+            z-index: -1;
+            animation: move 10s ease-in-out infinite;
+            transform-origin: 50% 50%;
+        }
+        a:hover {
+        transform: translateY(-2px);
+        text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        @keyframes move {
+            0%   { transform: scale(1)   translate(10px, -30px); }
+            38%  { transform: scale(0.8, 1) translate(80vw, 30vh) rotate(160deg); }
+            40%  { transform: scale(0.8, 1) translate(80vw, 30vh) rotate(160deg); }
+            78%  { transform: scale(1.3) translate(0vw, 50vh) rotate(-20deg); }
+            80%  { transform: scale(1.3) translate(0vw, 50vh) rotate(-20deg); }
+            100% { transform: scale(1)   translate(10px, -30px); }
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100">
+<body class="bg-gray-100">
+<header class="fixed top-0 z-10 w-full py-4 text-white bg-gray-800">
+        <div class="container flex items-center justify-between px-4 mx-auto">
+            <h1 class="text-2xl font-semibold">Sameer Iyengar</h1>
+            <div class="md:hidden">
+                <button id="nav-toggle" class="text-white focus:outline-none">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                    </svg>
+                </button>
+            </div>
+            <nav id="nav-menu" class="hidden md:flex md:space-x-6">
+                <ul class="flex flex-col space-y-4 md:flex-row md:space-y-0 md:space-x-6">
+                    <li><a href="index.html" class="hover:text-gray-400">home</a></li>
+                    <li><a href="/portfolio.html" class="hover:text-gray-400">portfolio</a></li>
+                    <li><a href="/resume.html" class="hover:text-gray-400">resume</a></li>
+                    <li><a href="https://www.linkedin.com/in/sameer-iyengar/" class="hover:text-gray-400">LinkedIn</a></li>
+                    
+                    <!-- Desktop Fun Things Dropdown -->
+                    <li class="relative group"> <!-- Changed to 'group' -->
+  <button class="flex items-center hover:text-gray-400">
+    fun things
+    <svg class="w-4 h-4 ml-1"><!-- keep your icon --></svg>
+  </button>
+  <div class="group-hover:block hidden bg-gray-700 ... absolute left-0 pt-2">
+                            <a href="/cat-gallery.html" class="block px-4 py-2 hover:bg-gray-600">eva!!</a>
+                            <!-- <a href="/travel-photos.html" class="block px-4 py-2 hover:bg-gray-600">Travel Photos</a>
+                            <a href="/hobbies.html" class="block px-4 py-2 hover:bg-gray-600">My Hobbies</a>
+                            <a href="/fun-facts.html" class="block px-4 py-2 hover:bg-gray-600">Fun Facts</a> -->
+                        </div>
+                    </li>
+                    
+                    <li><a href="/contact.html" class="hover:text-gray-400">contact</a></li>
+                    <li><a href="/about.html" class="hover:text-gray-400">about</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main class="max-w-6xl px-4 pt-24 pb-12 mx-auto">
+        <section class="mb-12">
+            <h1 class="mb-6 text-4xl font-bold text-center">eva!!</h1>
+            <div class="flex flex-col items-center gap-8 md:flex-row">
+                <div class="md:w-1/3">
+                    <img src="/images/cat-profile.jpg" alt="My cat" class="w-full rounded-lg shadow-xl">
+                </div>
+                <div class="md:w-2/3">
+                    <h2 class="mb-4 text-2xl font-semibold">bio</h2>
+                    <p class="mb-4 text-lg">Meet Eva! She's a tabby/tortoise mix who joined our family in August 2023. She loves anything that crinkles, and her favorite food is anything we tell her not to eat.</p>
+                    <p class="mb-4 text-lg">Eva is rather silly. She often gets the zoomies around 3am, and often knocks things off tables. She's also a big fan of treats.</p>
+
+                </div>
+            </div>
+        </section>
+<!--
+        <section class="cat-gallery">
+            <h2 class="mb-8 text-3xl font-bold text-center">photo gallery</h2>
+            <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                <div class="overflow-hidden rounded-lg shadow-md">
+                    <img src="/images/cat1.jpg" alt="Cat sleeping" class="object-cover w-full h-64">
+                    <p class="p-3 bg-white">Taking a nap in the sun</p>
+                </div>
+                <div class="overflow-hidden rounded-lg shadow-md">
+                    <img src="/images/cat2.jpg" alt="Cat playing" class="object-cover w-full h-64">
+                    <p class="p-3 bg-white">Playing with favorite toy</p>
+                </div>
+                <div class="overflow-hidden rounded-lg shadow-md">
+                    <img src="/images/cat3.jpg" alt="Cat curious" class="object-cover w-full h-64">
+                    <p class="p-3 bg-white">Investigating the camera</p>
+                </div>
+                <div class="overflow-hidden rounded-lg shadow-md">
+                    <img src="/images/cat4.jpg" alt="Cat in box" class="object-cover w-full h-64">
+                    <p class="p-3 bg-white">If I fits, I sits</p>
+                </div>
+                <div class="overflow-hidden rounded-lg shadow-md">
+                    <img src="/images/cat5.jpg" alt="Cat stretching" class="object-cover w-full h-64">
+                    <p class="p-3 bg-white">Morning stretch</p>
+                </div>
+                <div class="overflow-hidden rounded-lg shadow-md">
+                    <img src="/images/cat6.jpg" alt="Cat cuddling" class="object-cover w-full h-64">
+                    <p class="p-3 bg-white">Cuddle time</p>
+                </div>
+            </div>
+        </section>
+    -->
+        <section class="p-6 mt-12 bg-gray-100 rounded-xl">
+            <h2 class="mb-4 text-2xl font-bold">daily routine</h2>
+            <div class="grid gap-4 md:grid-cols-3">
+                <div class="p-4 bg-white rounded-lg shadow">
+                    <h3 class="mb-2 font-semibold">morning</h3>
+                    <p>scratch at bedroom door for 20 minutes</p>
+                </div>
+                <div class="p-4 bg-white rounded-lg shadow">
+                    <h3 class="mb-2 font-semibold">Afternoon</h3>
+                    <p>nap</p>
+                </div>
+                <div class="p-4 bg-white rounded-lg shadow">
+                    <h3 class="mb-2 font-semibold">Evening</h3>
+                    <p>nap again</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="py-4 text-center text-white bg-gray-800">
+        <div class="container mx-auto">
+            <p>&copy; Sameer Iyengar 2024</p>
+        </div>
+    </footer>
+</body>
+</html>
