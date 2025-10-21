@@ -23,7 +23,7 @@
         href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap"
         rel="stylesheet">
     <style>
-        :root {
+        <style> :root {
             /* Light Theme (default) - High contrast */
             --bg-primary: #f5f5f7;
             --text-primary: #121212;
@@ -50,25 +50,25 @@
             content: "";
             position: absolute;
             left: 0;
-            width: 100%;
+            width: %;
             height: 30px;
             /* Original height */
-            background-size: auto 24px;
-            /* Force exact height */
-            background-repeat: repeat-x;
-            /* Tile horizontally */
-            background-position: center;
+            background-size: 100% 75%;
+            /* Scale vertically to 75% */
+            background-repeat: no-repeat;
             z-index: 2;
         }
 
         .gallery-item::before {
             top: 0;
             background-image: url('Asset 4.svg');
+            background-position: top;
         }
 
         .gallery-item::after {
             bottom: 0;
-            background-image: url('Asset 4.svg');
+            background-image: url('Asset 4svg');
+            background-position: bottom;
         }
 
         .gallery-img {
